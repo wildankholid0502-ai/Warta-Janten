@@ -1,18 +1,18 @@
-# 🚀 WARTA JABAR - Google Sheets CMS Integration
+# 🚀 WARTA JABAR - Integrasi Google Sheets sebagai CMS
 
-**Integrasikan Google Sheets sebagai database artikel untuk website Warta Jabar. Auto-generate HTML dan manage konten mudah dari spreadsheet!**
+**Gunakan Google Sheets sebagai database artikel untuk website Warta Jabar. Generator otomatis membuat HTML dan memperbarui konten dengan mudah!**
 
 ---
 
-## 📋 Quick Start (5 Menit)
+## 📋 Mulai Cepat (5 Menit)
 
 ### 1️⃣ Siapkan Google Cloud
 ```bash
 # Kunjungi: console.cloud.google.com
-# 1. Buat project "Warta-Jabar-News"
-# 2. Enable "Google Sheets API" 
+# 1. Buat project (misal: "Warta-Jabar-News")
+# 2. Aktifkan "Google Sheets API"
 # 3. Buat Service Account
-# 4. Download JSON key
+# 4. Download kunci JSON
 # 5. Simpan ke: tools/credentials.json
 ```
 
@@ -27,10 +27,10 @@ Buat spreadsheet dengan kolom:
 - author (Nama penulis)
 - excerpt (Ringkasan singkat)
 
-Share spreadsheet dengan email di credentials.json
+Bagikan spreadsheet dengan email yang ada di credentials.json
 ```
 
-### 3️⃣ Update Config
+### 3️⃣ Update Konfigurasi
 ```bash
 # Buka: tools/config.js
 # Update:
@@ -38,7 +38,7 @@ Share spreadsheet dengan email di credentials.json
 #  - SPREADSHEET_ID (dari URL Google Sheets)
 ```
 
-### 4️⃣ Generate & Deploy
+### 4️⃣ Generate & Jalankan
 ```bash
 npm install
 node tools/generate.js
@@ -48,99 +48,100 @@ node tools/generate.js
 # ✅ articles.json (database JSON)
 ```
 
-### 5️⃣ Test Website
+### 5️⃣ Uji Website
 - Buka `news.html` di browser
-- Cek pagination, filter kategori, dan search bekerja
+- Periksa pagination, filter kategori, dan fitur pencarian
 
 ---
 
-## 📁 File Structure
+## 📁 Struktur File
 
 ```
 warta-jabar/
-├── articles.json              # Auto-generated database
-├── berita1.html               # Auto-generated articles
+├── articles.json              # Database artikel (auto-generated)
+├── berita1.html               # Halaman artikel (auto-generated)
 ├── berita2.html
 ├── ...
-├── news.html                  # Modified - load dinamis
-├── package.json              # Dependencies
+├── news.html                  # Halaman utama, memuat artikel secara dinamis
+├── package.json               # Dependensi
 │
 ├── tools/
-│  ├── generate.js            # Main generator script
-│  ├── config.js              # API config
-│  ├── template.html          # Article page template
-│  └── credentials.json       # Google auth (PRIVATE!)
+│  ├── generate.js             # Script generator utama
+│  ├── config.js               # Konfigurasi API & setup
+│  ├── template.html           # Template halaman artikel
+│  └── credentials.json        # Auth Google (PRIVATE!)
 │
 ├── js/
-│  ├── load-news.js          # Frontend loader (NEW)
-│  ├── main.js               # Existing
-│  └── auth.js               # Existing
+│  ├── load-news.js            # Loader frontend (memuat articles.json)
+│  ├── main.js                 # Script frontend lain
+│  └── auth.js                 # Script auth (jika digunakan)
 │
 ├── css/
-│  └── style.css             # Existing
+│  └── style.css               # Styling
 │
-├── img/                      # Article images folder
+├── img/                       # Folder gambar artikel
 │
-├── SETUP-GUIDE.md           # Setup instructions
-├── IMPLEMENTATION-GUIDE.md  # Detailed implementation
-├── EXAMPLE-ARTICLES.json    # Example format
-└── README.md                # This file
+├── SETUP-GUIDE.md             # Petunjuk setup
+├── IMPLEMENTATION-GUIDE.md    # Penjelasan implementasi
+├── EXAMPLE-ARTICLES.json      # Contoh format artikel
+└── README.md                  # File ini
 ```
 
 ---
 
-## 🔄 Workflow
+## 🔄 Alur Kerja (Workflow)
 
 ```
 ┌─────────────────────────┐
 │ 1. Edit Google Sheets   │
-│    - Add/edit artikel   │
+│    - Tambah/edit artikel│
 └────────────┬────────────┘
              │
              ↓
 ┌─────────────────────────┐
-│ 2. Run Generator        │
+│ 2. Jalankan Generator   │
 │    node tools/generate  │
 └────────────┬────────────┘
              │
              ↓
 ┌─────────────────────────┐
-│ 3. Auto-Generated       │
+│ 3. Otomatis Ter-generate│
 │    - berita*.html       │
 │    - articles.json      │
 └────────────┬────────────┘
              │
              ↓
 ┌─────────────────────────┐
-│ 4. Website Auto-Update  │
-│    - news.html load     │
-│    - Pagination works   │
-│    - Search works       │
+│ 4. Website Ter-update   │
+│    - news.html memuat   │
+│      artikel baru       │
+│    - Pagination bekerja │
+│    - Pencarian bekerja  │
 └─────────────────────────┘
 ```
 
 ---
 
-## 📚 Documentation
+## 📚 Dokumentasi
 
-Lihat file-file berikut untuk detail lengkap:
+Lihat file-file berikut untuk informasi lebih lengkap:
 
 | File | Konten |
 |------|--------|
-| **SETUP-GUIDE.md** | Step-by-step setup Google Sheets API |
-| **IMPLEMENTATION-GUIDE.md** | Workflow harian + advanced tips |
-| **EXAMPLE-ARTICLES.json** | Contoh struktur artikel |
-| **tools/config.js** | Semua parameter configuration |
-| **tools/generate.js** | Source code generator (well-documented) |
-| **js/load-news.js** | Source code frontend loader |
+| **SETUP-GUIDE.md** | Panduan setup Google Sheets API |
+| **IMPLEMENTATION-GUIDE.md** | Alur kerja + tips lanjutan |
+| **EXAMPLE-ARTICLES.json** | Contoh format data artikel |
+| **tools/config.js** | Semua parameter konfigurasi |
+| **tools/generate.js** | Kode generator (dokumentasi ada di dalam) |
+| **js/load-news.js** | Kode frontend untuk memuat articles.json |
 
 ---
 
-## ⚙️ Configuration (tools/config.js)
+## ⚙️ Konfigurasi (tools/config.js)
 
 ```javascript
 module.exports = {
-  // Google credentials (copy dari JSON key)
+  // Google credentials (salin dari kunci JSON)
   GOOGLE_CREDENTIALS: { ... },
   
   // Spreadsheet ID (dari URL Google Sheets)
@@ -149,15 +150,15 @@ module.exports = {
   // Range data di spreadsheet
   RANGE: "Sheet1!A2:G1000",
   
-  // Path configuration
+  // Path konfigurasi
   ARTICLE_OUTPUT_DIR: "./",
   ARTICLES_JSON_PATH: "./articles.json",
   TEMPLATE_PATH: "./tools/template.html",
   
-  // Image configuration
+  // Konfigurasi gambar
   IMAGE_BASE_URL: "img/",
   
-  // Frontend options
+  // Opsi frontend
   ARTICLES_PER_PAGE: 10,
   AUTO_WRAP_PARAGRAPHS: true,
 };
@@ -165,39 +166,41 @@ module.exports = {
 
 ---
 
-## 🎯 Features
+## 🎯 Fitur
 
-### ✅ Implemented
+### ✅ Sudah Terpasang
 - [x] Auto-generate HTML artikel dari Google Sheets
-- [x] Generate articles.json database
-- [x] Dynamic loading di news.html
+- [x] Generate database `articles.json`
+- [x] Memuat artikel secara dinamis di `news.html`
 - [x] Pagination (10 artikel per halaman)
-- [x] Category filter
-- [x] Full-text search (title, content, excerpt)
-- [x] Responsive design (mobile-friendly)
-- [x] Image lazy loading
-- [x] Auto-wrap plain text dengan `<p>` tags
-- [x] Support local images (img/) dan external URLs
-- [x] Auto-format tanggal (Indonesia locale)
+- [x] Filter kategori
+- [x] Pencarian full-text (title, content, excerpt)
+- [x] Responsive (mobile-friendly)
+- [x] Lazy-loading gambar
+- [x] Auto-wrap teks dengan `<p>` tag
+- [x] Dukungan gambar lokal (`img/`) dan URL eksternal
+- [x] Auto-format tanggal (format Indonesia)
 
-### 📋 Optional Features
-- [ ] Email newsletter integration
-- [ ] Social media share buttons
-- [ ] Rating/like article
-- [ ] Comments system
-- [ ] Related articles
-- [ ] Reading time estimate
-- [ ] Dark mode toggle
+### 📋 Fitur Opsional (Bonus)
+- [ ] Integrasi newsletter email
+- [ ] Tombol share ke sosial media
+- [ ] Rating / like artikel
+- [ ] Sistem komentar
+- [ ] Artikel terkait
+- [ ] Estimasi waktu baca
+- [ ] Mode gelap (dark mode)
 
 ---
 
-## 🛠️ Commands
+## 🛠️ Perintah
 
 ```bash
-# Install dependencies
+# Install dependensi
 npm install
 
-# Generate articles (run setiap kali edit di Google Sheets)
+# Generate artikel (jalankan setiap kali update Google Sheets)
+node tools/generate.js
+```
 node tools/generate.js
 
 # Or dengan npm script:
